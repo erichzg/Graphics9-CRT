@@ -37,14 +37,14 @@ def scanline_convert(polygons, i, screen, zbuffer ):
     xEnd = x0
     yVal = y0
     zStart = z0
-    zEnd = z1
-    deltaXi = (x2 - x0)/(y2 - y0)
-    deltaZi = (z2 - z0)/(y2 - y0)
+    zEnd = z0
+    deltaXi = 1.0*(x2 - x0)/(y2 - y0)
+    deltaZi = 1.0*(z2 - z0)/(y2 - y0)
     draw_line(xStart, yVal, zStart, xEnd, yVal, zEnd, screen, zbuffer, color)
 
     if (y0 != y1):
-        deltaXf = (x1 - x0)/(y1 - y0)
-        deltaZf = (z1 - z0)/(y1 - y0)
+        deltaXf = 1.0*(x1 - x0)/(y1 - y0)
+        deltaZf = 1.0*(z1 - z0)/(y1 - y0)
 
         while (yVal < y1):
             draw_line(xStart, yVal, zStart, xEnd, yVal, zEnd, screen, zbuffer, color)
@@ -54,11 +54,9 @@ def scanline_convert(polygons, i, screen, zbuffer ):
             zEnd += deltaZf
             yVal += 1
 
-    yVal = y1
     xEnd = x1
     zEnd = z1
-    draw_line(xStart, yVal, zStart, xEnd, yVal, zEnd, screen, zbuffer, color)
-
+    
     if (y2 != y1):
         deltaXf = (x2 - x1)/(y2 - y1)
         deltaZf = (z2 - z1)/(y2 - y1)
